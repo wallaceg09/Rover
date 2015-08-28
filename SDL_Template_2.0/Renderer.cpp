@@ -16,30 +16,36 @@ Renderer::~Renderer()
 
 bool Renderer::initialized()
 {
-	return isInitialized;
+	return this->isInitialized;
 }
 
 
 SDL_Renderer* Renderer::getRenderer()
 {
-	return renderer;
+	return this->renderer;
 }
 
-void Renderer::clear(const Color &color)
+void Renderer::clear(const SDL_Color &color)
 {
-	setColor(color);
+	this->setColor(color);
 	SDL_RenderClear(this->renderer);
 }
 
-void Renderer::drawRect(const SDL_Rect &rect, const Color &color)
+void Renderer::drawRect(const SDL_Rect &rect, const SDL_Color &color)
 {
-	setColor(color);
+	this->setColor(color);
 	SDL_RenderDrawRect(this->renderer, &rect);
 }
 
-void Renderer::fillRect(const SDL_Rect &rect, const Color &color)
+void Renderer::fillRect(const SDL_Rect &rect, const SDL_Color &color)
 {
+	this->setColor(color);
+	SDL_RenderFillRect(this->renderer, &rect);
+}
 
+void Renderer::update()
+{
+	SDL_RenderPresent(this->renderer);
 }
 
 #pragma endregion
@@ -100,9 +106,9 @@ void Renderer::printError(std::string formattedString)
 	printf("%s SDL Error: %s\n", formattedString.c_str(), SDL_GetError());
 }
 
-void Renderer::setColor(const Color &color)
+void Renderer::setColor(const SDL_Color &color)
 {
-	SDL_SetRenderDrawColor(this->renderer, color.Red, color.Green, color.Blue, color.Alpha);
+	SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
 }
 
 #pragma endregion

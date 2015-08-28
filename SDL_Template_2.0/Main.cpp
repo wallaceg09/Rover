@@ -26,14 +26,12 @@ int main(int argc, char* args[])
 				quit = true;
 			}
 
-			/*SDL_SetRenderDrawColor(renderer.getRenderer(), 0x00, 0x00, 0x00, 0xFF);
-			SDL_RenderClear(renderer.getRenderer());*/
 			renderer.clear(BLACK);
 
 			SDL_Rect drawRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
 			renderer.drawRect(drawRect, WHITE);
 
-			SDL_RenderPresent(renderer.getRenderer());
+			renderer.update();
 		}
 	}
 

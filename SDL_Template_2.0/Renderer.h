@@ -13,9 +13,11 @@ public:
 	bool initialized();
 	SDL_Surface* loadSurface(std::string path);
 	SDL_Renderer* getRenderer();
-	void clear(const Color &color);
-	void drawRect(const SDL_Rect &rect, const Color &color);
-	void fillRect(const SDL_Rect &rect, const Color &color);
+	void clear(const SDL_Color &color);
+	void drawRect(const SDL_Rect &rect, const SDL_Color &color);
+	void fillRect(const SDL_Rect &rect, const SDL_Color &color);
+
+	void update();
 
 private:
 	//The window we'll be rendering to
@@ -27,13 +29,10 @@ private:
 	//True if SDL initialization succeeded, false otherwise
 	bool isInitialized = false;
 
-	Color BLACK;
-	Color WHITE;
-
 	void init();
 	void close();
 	void printError(std::string formattedString);
-	void setColor(const Color &color);
+	void setColor(const SDL_Color &color);
 
 	
 };
