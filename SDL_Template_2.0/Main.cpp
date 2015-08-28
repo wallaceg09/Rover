@@ -1,7 +1,9 @@
 #include <SDL.h>
 #include <stdio.h>
+
 #include "Constants.h"
 #include "Renderer.h"
+#include "Room.h"
 
 int main(int argc, char* args[])
 {
@@ -17,6 +19,8 @@ int main(int argc, char* args[])
 
 	SDL_Event e;
 
+	Room testRoom(150.0, 150.0, 10.0, 10.0, WHITE);
+
 	while(!quit)
 	{
 		while (SDL_PollEvent(&e) != 0)
@@ -28,9 +32,8 @@ int main(int argc, char* args[])
 
 			renderer.clear(BLACK);
 
-			SDL_Rect drawRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
-			renderer.drawRect(drawRect, WHITE);
-
+			testRoom.render(renderer);
+			
 			renderer.update();
 		}
 	}
