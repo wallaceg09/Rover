@@ -17,7 +17,7 @@ Room::Room(int  x, int y, int width, int height) : Room(x, y, width, height, col
 }
 
 Room::Room(int x, int y, int width, int height, const SDL_Color &color)
-	:name(Text("Test"))
+	:name(Text("Test", GREEN))
 {
 	int nWidth = width * ROOM_SIZE_INCREMENT;
 	int nHeight = height * ROOM_SIZE_INCREMENT;
@@ -36,7 +36,7 @@ void Room::render(Renderer &renderer)
 	renderer.drawRect(this->rectangle, this->color);
 	
 	name.centerAt(this->center);
-	name.render(renderer, WHITE);
+	name.render(renderer);
 
 	if (this->renderCenterPoint)
 	{
