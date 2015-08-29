@@ -43,6 +43,12 @@ void Renderer::fillRect(const SDL_Rect &rect, const SDL_Color &color)
 	SDL_RenderFillRect(this->renderer, &rect);
 }
 
+void Renderer::drawPoint(const SDL_Point &point, const SDL_Color &color)
+{
+	this->setColor(color);
+	SDL_RenderDrawPoint(this->renderer, point.x, point.y);
+}
+
 void Renderer::update()
 {
 	SDL_RenderPresent(this->renderer);

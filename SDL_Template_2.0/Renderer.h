@@ -16,6 +16,7 @@ public:
 	void clear(const SDL_Color &color);
 	void drawRect(const SDL_Rect &rect, const SDL_Color &color);
 	void fillRect(const SDL_Rect &rect, const SDL_Color &color);
+	void drawPoint(const SDL_Point &point, const SDL_Color &color);
 
 	void update();
 
