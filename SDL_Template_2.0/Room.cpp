@@ -33,7 +33,7 @@ Room::~Room()
 
 void Room::render(Renderer &renderer)
 {
-	renderer.drawRect(this->rectangle, WHITE);
+	renderer.drawRect(this->rectangle, this->color);
 	renderer.drawPoint(this->center, WHITE);
 }
 
