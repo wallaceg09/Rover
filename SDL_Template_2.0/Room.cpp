@@ -12,19 +12,19 @@
 //{
 //}
 
-Room::Room(int  x, int y, int width, int height)
+Room::Room(int  x, int y, int width, int height) : Room(x, y, width, height, color)
 {
-	Room(x, y, width, height, WHITE);
 }
 
-Room::Room(int x, int y, int width, int height, SDL_Color color)
+Room::Room(int x, int y, int width, int height, const SDL_Color &color)
+	:name(Text("Test"))
 {
 	int nWidth = width * ROOM_SIZE_INCREMENT;
 	int nHeight = height * ROOM_SIZE_INCREMENT;
 	this->rectangle = SDL_Rect{ x - (nWidth / 2), y - (nHeight / 2), nWidth, nHeight };
 	this->color = color;
 	this->center = SDL_Point{ x, y };
-	renderCenterPoint = true;
+	renderCenterPoint = false;
 }
 
 Room::~Room()
@@ -34,7 +34,14 @@ Room::~Room()
 void Room::render(Renderer &renderer)
 {
 	renderer.drawRect(this->rectangle, this->color);
-	renderer.drawPoint(this->center, WHITE);
+	
+	name.centerAt(this->center);
+	name.render(renderer, WHITE);
+
+	if (this->renderCenterPoint)
+	{
+		renderer.drawPoint(this->center, WHITE);
+	}
 }
 
 void Room::setColor(SDL_Color color)

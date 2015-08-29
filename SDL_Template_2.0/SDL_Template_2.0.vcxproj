@@ -75,6 +75,7 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SDL2_gfxPrimitives.c" />
     <ClCompile Include="SDL2_rotozoom.c" />
+    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
@@ -85,6 +86,7 @@
     <ClInclude Include="SDL2_gfxPrimitives.h" />
     <ClInclude Include="SDL2_gfxPrimitives_font.h" />
     <ClInclude Include="SDL2_rotozoom.h" />
+    <ClInclude Include="Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
