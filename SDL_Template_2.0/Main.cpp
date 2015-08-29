@@ -19,7 +19,7 @@ int main(int argc, char* args[])
 
 	SDL_Event e;
 
-	Room testRoom(150.0, 150.0, 10.0, 10.0, WHITE);
+	Room testRoom(150.0, 150.0, 3, 2, WHITE);
 
 	while(!quit)
 	{

@@ -5,10 +5,10 @@
 class Room
 {
 public:
-	Room(SDL_Rect rect);
-	Room(SDL_Rect rect, SDL_Color color);
-	Room(float x, float y, float width, float height);
-	Room(float x, float y, float width, float height, SDL_Color color);
+	/*Room(SDL_Rect rect);
+	Room(SDL_Rect rect, SDL_Color color);*/
+	Room(int x, int y, int width, int height);
+	Room(int x, int y, int width, int height, SDL_Color color);
 	~Room();
 	void render(Renderer &renderer);
 	void setColor(SDL_Color color);
@@ -16,5 +16,7 @@ public:
 private:
 	SDL_Rect rectangle;
 	SDL_Color color;
+	SDL_Point center;
+	bool renderCenterPoint;
 };
 
