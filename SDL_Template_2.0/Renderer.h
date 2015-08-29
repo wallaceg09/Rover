@@ -5,6 +5,7 @@
 #include <map>
 #include "Color.h"
 #include <vector>
+#include <string>
 
 class Renderer
 {
@@ -24,6 +25,10 @@ public:
 
 	void fillPolygon(int16_t * vx, int16_t * vy, int n, const SDL_Color &color);
 	void fillPolygon(const std::vector<SDL_Point> &points, const SDL_Color &color);
+
+	void renderText(std::string text, const SDL_Point &point, const SDL_Color &color);
+	void renderText(std::string text, const SDL_Point &point, const SDL_Color &color, float scale);
+	void renderText(std::string text, const SDL_Point &point, const SDL_Color &color, float scaleX, float scaleY);
 
 	void update();
 

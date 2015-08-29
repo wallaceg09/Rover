@@ -82,15 +82,21 @@ void Renderer::fillPolygon(const std::vector<SDL_Point> &points, const SDL_Color
 	fillPolygon(vx.get(), vy.get(), n, color);
 }
 
-void Renderer::convertPointVectorToPolygonArrays(const std::vector<SDL_Point> points, int16_t *vx, int16_t *vy)
+void Renderer::renderText(std::string text, const SDL_Point &point, const SDL_Color &color)
 {
-	int n = points.size();
-	for (int i = 0; i < n; ++i)
-	{
-		const SDL_Point* currentPoint = &points.at(i);
-		vx[i] = static_cast<int16_t>(currentPoint->x);
-		vy[i] = static_cast<int16_t>(currentPoint->y);
-	}
+	stringRGBA(this->renderer, point.x, point.y, text.c_str(), color.r, color.g, color.b, color.a);
+}
+
+void Renderer::renderText(std::string text, const SDL_Point &point, const SDL_Color &color, float scale)
+{
+	renderText(text, point, color, scale, scale);
+}
+
+void Renderer::renderText(std::string text, const SDL_Point &point, const SDL_Color &color, float scaleX, float scaleY)
+{
+	SDL_RenderSetScale(this->renderer, scaleX, scaleY);
+	stringRGBA(this->renderer, point.x/scaleX, point.y/scaleY, text.c_str(), color.r, color.g, color.b, color.a);
+	SDL_RenderSetScale(this->renderer, 1, 1);
 }
 
 void Renderer::update()
@@ -160,6 +166,17 @@ void Renderer::printError(std::string formattedString)
 void Renderer::setColor(const SDL_Color &color)
 {
 	SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
+}
+
+void Renderer::convertPointVectorToPolygonArrays(const std::vector<SDL_Point> points, int16_t *vx, int16_t *vy)
+{
+	int n = points.size();
+	for (int i = 0; i < n; ++i)
+	{
+		const SDL_Point* currentPoint = &points.at(i);
+		vx[i] = static_cast<int16_t>(currentPoint->x);
+		vy[i] = static_cast<int16_t>(currentPoint->y);
+	}
 }
 
 #pragma endregion
