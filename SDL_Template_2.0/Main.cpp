@@ -1,50 +1,42 @@
 #include <SDL.h>
 #include <stdio.h>
+
 #include "Constants.h"
+#include "Renderer.h"
+#include "Room.h"
 
 int main(int argc, char* args[])
 {
-	//The window we'll be rendering to
-	SDL_Window* window = NULL;
-
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-
-	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	Renderer renderer;
+	if (!renderer.initialized())
 	{
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-	}
-	else
-	{
-		//Create window
-		window = SDL_CreateWindow("SDL 2.0 Template", SCREEN_POSITION_X, SCREEN_POSITION_Y, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WINDOW_FLAGS);
-		
-		if (window == NULL)
-		{
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		}
-		else
-		{
-			//Get window surface
-			screenSurface = SDL_GetWindowSurface(window);
-
-			//Fill the surface white
-			SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
-
-			//Update the surface
-			SDL_UpdateWindowSurface(window);
-
-			//Wait two seconds
-			SDL_Delay(2000);
-		}
+		printf("Renderer could not be initialized! Ending process.");
+		SDL_Delay(5000);
+		return 1;
 	}
 
-	//Destroy window
-	SDL_DestroyWindow(window);
+	bool quit = false;
 
-	//Quit SDL subsystems
-	SDL_Quit();
+	SDL_Event e;
+
+	Room testRoom(150.0, 150.0, 3, 2, GREEN);
+
+	while(!quit)
+	{
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+
+			renderer.clear(BLACK);
+
+			testRoom.render(renderer);
+			
+			renderer.update();
+		}
+	}
 
 	return 0;
 }
