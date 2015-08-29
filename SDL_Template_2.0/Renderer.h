@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include "Color.h"
+#include <vector>
 
 class Renderer
 {
@@ -17,6 +18,12 @@ public:
 	void drawRect(const SDL_Rect &rect, const SDL_Color &color);
 	void fillRect(const SDL_Rect &rect, const SDL_Color &color);
 	void drawPoint(const SDL_Point &point, const SDL_Color &color);
+
+	void drawPolygon(int16_t * vx, int16_t * vy, int n, const SDL_Color &color);
+	void drawPolygon(const std::vector<SDL_Point> &points, const SDL_Color &color);
+
+	void fillPolygon(int16_t * vx, int16_t * vy, int n, const SDL_Color &color);
+	void fillPolygon(const std::vector<SDL_Point> &points, const SDL_Color &color);
 
 	void update();
 
@@ -35,6 +42,6 @@ private:
 	void printError(std::string formattedString);
 	void setColor(const SDL_Color &color);
 
-	
+	void convertPointVectorToPolygonArrays(const std::vector<SDL_Point> points, int16_t *vx, int16_t *vy);
 };
 

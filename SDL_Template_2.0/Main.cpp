@@ -19,7 +19,7 @@ int main(int argc, char* args[])
 
 	SDL_Event e;
 
-	Room testRoom(150.0, 150.0, 3, 2, GREEN);
+	Room testRoom(150, 150, 3, 2, GREEN);
 
 	while(!quit)
 	{
@@ -32,7 +32,16 @@ int main(int argc, char* args[])
 
 			renderer.clear(BLACK);
 
-			testRoom.render(renderer);
+			//testRoom.render(renderer);
+
+			//Test Polygon
+			std::vector<SDL_Point> points;
+			points.push_back(SDL_Point{ 150, 150 });
+			points.push_back(SDL_Point{ 130, 120 });
+			points.push_back(SDL_Point{ 150, 90 });
+			points.push_back(SDL_Point{ 170, 120 });
+
+			renderer.drawPolygon(points, RED);
 			
 			renderer.update();
 		}
